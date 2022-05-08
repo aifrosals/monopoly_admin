@@ -79,6 +79,15 @@ class AdminProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final res = await prefs.clear();
+  }
+
+  logout() {
+    deleteSession();
+  }
+
   Admin? get admin => _admin;
 
   bool get sessionLoading => _sessionLoading;

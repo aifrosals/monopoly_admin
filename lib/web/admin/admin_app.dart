@@ -23,6 +23,7 @@ class AdminApp extends StatelessWidget {
         navigatorKey: Values.adminNavigatorKey,
         initialRoute: '/',
         routes: {
+          AdminLogin.route: (context) => const AdminLogin(),
           ResponsiveDashboard.route: (context) => const ResponsiveDashboard(),
           QuestionMenu.route: (context) => const QuestionMenu()
         },
