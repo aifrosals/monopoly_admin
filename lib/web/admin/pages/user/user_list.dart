@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:monopoly_admin/config/scroll_config.dart';
 import 'package:monopoly_admin/providers/admin_user_provider.dart';
 import 'package:monopoly_admin/web/admin/pages/user/user_data_source.dart';
 import 'package:provider/provider.dart';
@@ -56,12 +57,3 @@ class UserList extends StatelessWidget {
   }
 }
 
-class MyCustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        // etc.
-      };
-}

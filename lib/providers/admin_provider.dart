@@ -11,11 +11,15 @@ class AdminProvider extends ChangeNotifier {
 
   bool _sessionLoading = false;
 
+  bool _loginLoading = false;
+
   AdminProvider() {
     checkSession();
   }
 
   Future<bool> login(String email, String password) async {
+    _loginLoading = true;
+    notifyListeners();
     try {
       Uri uri = Uri.parse('${ApiConstants.domain}${ApiConstants.adminLogin}');
       Map body = {
@@ -45,6 +49,9 @@ class AdminProvider extends ChangeNotifier {
       debugPrint('adminProvider login error $error $st');
       WebDialog.showServerResponseDialog('Unknown error occurred');
       return false;
+    } finally {
+      _loginLoading = false;
+      notifyListeners();
     }
   }
 
@@ -91,4 +98,6 @@ class AdminProvider extends ChangeNotifier {
   Admin? get admin => _admin;
 
   bool get sessionLoading => _sessionLoading;
+
+  bool get loginLoading => _loginLoading;
 }

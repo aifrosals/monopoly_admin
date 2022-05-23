@@ -61,6 +61,16 @@ class _AdminLoginState extends State<AdminLogin> {
                           return null;
                         }
                       },
+                      onFieldSubmitted: (value) async {
+                        if (_formKey.currentState != null &&
+                            _formKey.currentState!.validate()) {
+                          bool res = await adminProvider.login(
+                              _emailController.text, _passwordController.text);
+                          if (res) {
+                            Navigator.of(context).pushNamed('/dashboard');
+                          }
+                        }
+                      },
                     ),
                   ),
                   const SizedBox(
@@ -101,18 +111,26 @@ class _AdminLoginState extends State<AdminLogin> {
                   const SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState != null &&
-                            _formKey.currentState!.validate()) {
-                          bool res = await adminProvider.login(
-                              _emailController.text, _passwordController.text);
-                          if (res) {
-                            Navigator.pushNamed(context, '/dashboard');
-                          }
-                        }
-                      },
-                      child: const Text('Login'))
+                  Consumer<AdminProvider>(
+                      builder: (context, adminProvider, child) {
+                    if (adminProvider.loginLoading) {
+                      return const CircularProgressIndicator();
+                    } else {
+                      return ElevatedButton(
+                          onPressed: () async {
+                            if (_formKey.currentState != null &&
+                                _formKey.currentState!.validate()) {
+                              bool res = await adminProvider.login(
+                                  _emailController.text,
+                                  _passwordController.text);
+                              if (res) {
+                                Navigator.pushNamed(context, '/dashboard');
+                              }
+                            }
+                          },
+                          child: const Text('Login'));
+                    }
+                  })
                 ],
               ),
             ),

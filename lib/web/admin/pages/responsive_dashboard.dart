@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/config/screen_config.dart';
-import 'package:monopoly_admin/web/admin/pages/dasboard_small_screen.dart';
-import 'package:monopoly_admin/web/admin/pages/dashbaord_large_screen.dart';
+import 'package:monopoly_admin/web/admin/pages/dashboard_small_screen.dart';
+import 'package:monopoly_admin/web/admin/pages/dashboard_large_screen.dart';
 import 'package:monopoly_admin/web/widgets/logout_button.dart';
-import 'package:monopoly_admin/web/widgets/web_drawer.dart';
+import 'package:monopoly_admin/web/widgets/side_bar/side_bar_drawer.dart';
 
 class ResponsiveDashboard extends StatelessWidget {
   static const String route = '/dashboard';
@@ -14,7 +14,7 @@ class ResponsiveDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenConfig().init(context);
     return Scaffold(
-      drawer: ScreenConfig.screenWidth <= 800 ? const WebDrawer() : null,
+      drawer: ScreenConfig.screenWidth <= 800 ? const SideBarDrawer() : null,
       appBar: ScreenConfig.screenWidth <= 800
           ? AppBar(
               title: const Text('Welcome to Dashboard'),

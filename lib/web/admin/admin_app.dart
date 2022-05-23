@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:monopoly_admin/config/values.dart';
 import 'package:monopoly_admin/providers/admin_provider.dart';
-import 'package:monopoly_admin/web/admin/pages/dashbaord_large_screen.dart';
+import 'package:monopoly_admin/web/admin/pages/dashboard_large_screen.dart';
 import 'package:monopoly_admin/web/admin/pages/admin_login.dart';
 import 'package:monopoly_admin/web/admin/pages/challenge/question_menu.dart';
 import 'package:monopoly_admin/web/admin/pages/responsive_dashboard.dart';
@@ -15,10 +18,20 @@ class AdminApp extends StatelessWidget {
     return MaterialApp(
         title: 'Monopoly Admin Portal',
         theme: ThemeData(
+          textTheme:
+              GoogleFonts.sourceSans3TextTheme(Theme.of(context).textTheme),
           appBarTheme: AppBarTheme(
             backgroundColor: Colors.grey[200],
           ),
           primarySwatch: Colors.grey,
+        ),
+        scrollBehavior: const MaterialScrollBehavior().copyWith(
+          dragDevices: {
+            PointerDeviceKind.mouse,
+            PointerDeviceKind.touch,
+            PointerDeviceKind.stylus,
+            PointerDeviceKind.unknown
+          },
         ),
         navigatorKey: Values.adminNavigatorKey,
         initialRoute: '/',

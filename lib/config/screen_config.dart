@@ -6,11 +6,13 @@ class ScreenConfig {
   static late double screenHeight;
   static late double blockWidth;
   static late double blockHeight;
+  static late double safeScreenWidth;
+  static late double safeScreenHeight;
 
   static late double dpi;
   static double appBarHeight = 0.0;
   static double paddingTop = 0.0;
-
+  static double paddingBottom = 0.0;
   static late double _safeAreaHorizontal;
   static late double _safeAreaVertical;
   static late double safeWidth;
@@ -25,11 +27,14 @@ class ScreenConfig {
     paddingTop = _mediaQueryData != null ? _mediaQueryData!.padding.top : 0.0;
     blockWidth = screenWidth / 100;
     blockHeight = screenHeight / 100;
+    paddingBottom = _mediaQueryData?.padding.bottom ?? 0.0;
+    safeScreenHeight = screenHeight - appBarHeight - paddingTop - paddingBottom;
 
     _safeAreaHorizontal = (_mediaQueryData?.padding.left ?? 0) +
         (_mediaQueryData?.padding.right ?? 0);
     _safeAreaVertical = (_mediaQueryData?.padding.top ?? 0) +
         (_mediaQueryData?.padding.bottom ?? 0);
+    safeScreenWidth = _safeAreaHorizontal;
     safeWidth = screenWidth - _safeAreaHorizontal / 100;
     safeHeight = screenHeight - _safeAreaVertical / 100;
   }
