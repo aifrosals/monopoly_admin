@@ -5,7 +5,6 @@ import 'package:monopoly_admin/models/user.dart';
 class Slot {
   String name;
   GlobalKey? endKey;
-
   /// type indicates the current type of the slot
   String type;
   String? image;
@@ -117,5 +116,17 @@ class Slot {
           return 1;
         }
     }
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'initial_type': initialType,
+      'current_type': type,
+      'color': '#${color.value.toRadixString(16)}',
+      'name': name,
+      'price': price,
+      'level': level,
+      'index': index,
+    };
   }
 }

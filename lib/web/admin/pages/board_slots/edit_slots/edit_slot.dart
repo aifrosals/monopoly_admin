@@ -70,26 +70,47 @@ class _EditSlotState extends State<EditSlot> {
                 duration: const Duration(milliseconds: 500),
                 child: Stack(
                   children: [
-                    Positioned(
-                        child: SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: FittedBox(child: AddSlotButton()))),
-                    Positioned(
-                        top: 30,
-                        left: 50,
-                        child: SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: FittedBox(child: DeleteSlotButton()),
-                        )),
-                    Positioned(
-                      top: 60,
-                      child: SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: FittedBox(child: SingleSlotEditButton())),
-                    )
+                    widget.slot.initialType != 'start' &&
+                            widget.slot.initialType != 'end'
+                        ? Positioned(
+                            child: SizedBox(
+                                height: 50,
+                                width: 50,
+                                child: FittedBox(
+                                    child: AddSlotButton(
+                                  index: widget.index,
+                                ))))
+                        : const SizedBox(),
+                    // widget.slot.initialType != 'start' &&
+                    //         widget.slot.initialType != 'end'
+                    //     ? Positioned(
+                    //         top: 30,
+                    //         left: 50,
+                    //         child: SizedBox(
+                    //           height: 50,
+                    //           width: 50,
+                    //           child: FittedBox(
+                    //               child: DeleteSlotButton(
+                    //             index: widget.index,
+                    //           ),
+                    //           ),
+                    //         ))
+                    //     : const SizedBox(),
+                    widget.slot.initialType != 'start' &&
+                            widget.slot.initialType != 'end'
+                        ? Positioned(
+                            top: 60,
+                            child: SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: FittedBox(
+                                  child: FittedBox(
+                                child: DeleteSlotButton(
+                                  index: widget.index,
+                                ),
+                              )),
+                            ))
+                        : const SizedBox()
                   ],
                 ),
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/models/slot.dart';
-import 'package:provider/provider.dart';
 
 //TODO: remove end key usage except for end slot
 class RewardView extends StatelessWidget {
@@ -18,152 +17,65 @@ class RewardView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 1.0),
         child: SizedBox(
+          height: 200,
+          width: 200,
           child: Padding(
             padding: const EdgeInsets.all(3.0),
             child: Container(
+              height: 200,
+              width: 200,
               key: slot.endKey,
               decoration: BoxDecoration(
                 color: slot.color,
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
               ),
-              child: Row(
+              child: Stack(
                 children: [
-                  Stack(
-                    children: [
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                          child: Image.asset(
-                            'assets/images/star.png',
-                            scale: 1.2,
-                          ),
-                        ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                      child: Image.asset(
+                        'assets/images/star.png',
+                        scale: 1.2,
                       ),
-                      // slot.allStepCount != null && slot.allStepCount![
-                      // userProvider.user.serverId] != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] >=
-                      //         1
-                      //     ? Positioned(
-                      //   top: 0,
-                      //   left: 0,
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(
-                      //         top: 8.0, right: 8.0),
-                      //     child: Image.asset(
-                      //             'assets/images/star.png',
-                      //             scale: 1.2,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     : const Positioned(
-                      //         top: 0, left: 0, child: SizedBox()),
-                      Positioned(
-                        top: 35,
-                        left: 35,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-                          child: Image.asset(
-                            'assets/images/star.png',
-                            scale: 1.2,
-                          ),
-                        ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 35,
+                    left: 35,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                      child: Image.asset(
+                        'assets/images/star.png',
+                        scale: 1.2,
                       ),
-                      // slot.allStepCount != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] >=
-                      //         2
-                      //     ? Positioned(
-                      //         top: 35,
-                      //         left: 35,
-                      //         child: Padding(
-                      //           padding: const EdgeInsets.only(
-                      //               top: 8.0, right: 8.0),
-                      //           child: Image.asset(
-                      //             'assets/images/star.png',
-                      //             scale: 1.2,
-                      //           ),
-                      //         ),
-                      //       )
-                      //     : const Positioned(
-                      //         top: 35, left: 35, child: SizedBox()),
-                      Positioned(
-                        top: 6,
-                        left: 70,
-                        child: Image.asset(
-                          'assets/images/star.png',
-                          scale: 0.8,
-                        ),
-                      ),
-                      // slot.allStepCount != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] >=
-                      //         3
-                      //     ? Positioned(
-                      //         top: 6,
-                      //         left: 70,
-                      //         child: Image.asset(
-                      //           'assets/images/star.png',
-                      //           scale: 0.8,
-                      //         ),
-                      //       )
-                      //     : const Positioned(
-                      //         top: 6, left: 70, child: SizedBox()),
-                      Positioned(
-                        top: 1,
-                        left: 133,
-                        child: Image.asset(
-                          'assets/images/star.png',
-                          scale: 1.2,
-                        ),
-                      ),
-                      // slot.allStepCount != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] >=
-                      //         4
-                      //     ? Positioned(
-                      //         top: 1,
-                      //         left: 133,
-                      //         child: Image.asset(
-                      //           'assets/images/star.png',
-                      //           scale: 1.2,
-                      //         ),
-                      //       )
-                      //     : const Positioned(
-                      //         top: 1, left: 133, child: SizedBox()),
-                      Positioned(
-                        top: 25,
-                        left: 170,
-                        child: Image.asset(
-                          'assets/images/star.png',
-                          scale: 0.8,
-                        ),
-                      ),
-                      // slot.allStepCount != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] != null &&
-                      //     slot.allStepCount![
-                      //     userProvider.user.serverId] >=
-                      //         5
-                      //     ? Positioned(
-                      //         top: 25,
-                      //         left: 170,
-                      //         child: Image.asset(
-                      //           'assets/images/star.png',
-                      //           scale: 0.8,
-                      //         ),
-                      //       )
-                      //     : const Positioned(
-                      //         top: 25, left: 170, child: SizedBox()),
-                    ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 6,
+                    left: 70,
+                    child: Image.asset(
+                      'assets/images/star.png',
+                      scale: 0.8,
+                    ),
+                  ),
+                  Positioned(
+                    top: 1,
+                    left: 133,
+                    child: Image.asset(
+                      'assets/images/star.png',
+                      scale: 1.2,
+                    ),
+                  ),
+                  Positioned(
+                    top: 25,
+                    left: 170,
+                    child: Image.asset(
+                      'assets/images/star.png',
+                      scale: 0.8,
+                    ),
                   ),
                   Text(
                     slot.name,
