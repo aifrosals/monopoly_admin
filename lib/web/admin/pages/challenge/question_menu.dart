@@ -18,7 +18,7 @@ class _QuestionMenuState extends State<QuestionMenu> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<AdminQuestionProvider>(context, listen: false).getQuestions(
           Provider.of<AdminProvider>(context, listen: false).admin!);
     });

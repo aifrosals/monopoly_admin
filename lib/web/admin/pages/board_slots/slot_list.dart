@@ -14,29 +14,33 @@ class SlotList extends StatelessWidget {
         child:
             Consumer<BoardProvider>(builder: (context, boardProvider, child) {
           return SizedBox(
-            height: ScreenConfig.safeScreenHeight,
+            height: ScreenConfig.safeScreenHeight - 10,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: boardProvider.slots.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('${index + 1}'),
-                        Column(
+                    return SizedBox(
+                      child: FittedBox(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              width: 400,
-                              height: 120,
-                              child: SlotGraphic.getSlotWidget(
-                                  boardProvider.slots[index]),
+                            Text('${index + 1}'),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 400,
+                                  height: 120,
+                                  child: SlotGraphic.getSlotWidget(
+                                      boardProvider.slots[index]),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
                     );
                   }),
             ),

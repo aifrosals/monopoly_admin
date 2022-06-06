@@ -19,6 +19,7 @@ class BoardProvider extends ChangeNotifier {
   bool _editSlots = false;
 
   getBoardSlots(Admin admin) async {
+    await Future.delayed(Duration.zero);
     _slotsLoading = true;
     notifyListeners();
     try {
@@ -41,8 +42,7 @@ class BoardProvider extends ChangeNotifier {
           response.statusCode == 401 ||
           response.statusCode == 402 ||
           response.statusCode == 403 ||
-          response.statusCode == 405) {
-      } else {
+          response.statusCode == 405) {} else {
         showDialog(
             context: Values.navigatorKey.currentContext!,
             builder: (context) => WebDialog.showServerResponseDialog(
@@ -62,6 +62,7 @@ class BoardProvider extends ChangeNotifier {
 
   saveEditableSlots(Admin admin) async {
     try {
+      await Future.delayed(Duration.zero);
       _slotsLoading = true;
       notifyListeners();
       String slots = json.encode(_editableSlots);
@@ -111,7 +112,7 @@ class BoardProvider extends ChangeNotifier {
 
   setSlotsForEdit() {
     _editSlots = true;
-    _editableSlots = _slots;
+    _editableSlots = List.from(_slots);
     notifyListeners();
   }
 
@@ -159,8 +160,7 @@ class BoardProvider extends ChangeNotifier {
         {
           return Slot(
               initialType: 'land',
-              color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
-                  .withOpacity(1.0),
+              color: getRandomColor(),
               name: 'For Sell',
               type: 'land',
               index: index,
@@ -243,6 +243,26 @@ class BoardProvider extends ChangeNotifier {
               level: 0);
         }
     }
+  }
+
+  Color getRandomColor() {
+    List<Color> colors = [
+      const Color(0xfff1c232),
+      const Color(0xff43AA8B),
+      const Color(0xff45818e),
+      const Color(0xff3d17a0),
+      const Color(0xff219EBC),
+      const Color(0xffFF595E),
+      const Color(0xffF3722C),
+      const Color(0xffFF5733),
+      const Color(0xff6A4C93),
+      const Color(0xff4c9480),
+      const Color(0xff944c8b),
+      const Color(0xff86ff57),
+      const Color(0xffff57a0)
+    ];
+    int index = math.Random().nextInt(colors.length);
+    return colors[index];
   }
 
   List<Slot> get slots => _slots;
