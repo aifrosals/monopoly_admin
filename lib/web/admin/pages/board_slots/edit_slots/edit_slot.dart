@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/models/slot.dart';
+import 'package:monopoly_admin/web/admin/pages/board_slots/edit_all_slots_button.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/slot_graphics.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/add_slot_button.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/delete_slot_button.dart';
+import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/edit_slot_button.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/single_slot_edit_button.dart';
 
 class EditSlot extends StatefulWidget {
@@ -81,21 +83,21 @@ class _EditSlotState extends State<EditSlot> {
                                   index: widget.index,
                                 ))))
                         : const SizedBox(),
-                    // widget.slot.initialType != 'start' &&
-                    //         widget.slot.initialType != 'end'
-                    //     ? Positioned(
-                    //         top: 30,
-                    //         left: 50,
-                    //         child: SizedBox(
-                    //           height: 50,
-                    //           width: 50,
-                    //           child: FittedBox(
-                    //               child: DeleteSlotButton(
-                    //             index: widget.index,
-                    //           ),
-                    //           ),
-                    //         ))
-                    //     : const SizedBox(),
+                    widget.slot.initialType != 'start' &&
+                            widget.slot.initialType != 'end'
+                        ? Positioned(
+                            top: 30,
+                            left: 50,
+                            child: SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: FittedBox(
+                                child: EditSlotButton(
+                                  index: widget.index,
+                                ),
+                              ),
+                            ))
+                        : const SizedBox(),
                     widget.slot.initialType != 'start' &&
                             widget.slot.initialType != 'end'
                         ? Positioned(

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:monopoly_admin/web/admin/pages/challenge/question_menu.dart';
+import 'package:monopoly_admin/web/widgets/color_picker.dart';
 
 class ChallengeMenu extends StatelessWidget {
   const ChallengeMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _colorInputController = TextEditingController();
     return Scaffold(
       body: Column(
         children: [
@@ -34,7 +37,7 @@ class ChallengeMenu extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           )
         ],

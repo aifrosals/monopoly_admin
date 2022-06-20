@@ -41,6 +41,7 @@ dependencies:
   charts_flutter: ^0.12.0
   flutter_phoenix: ^1.0.0
   google_fonts: ^3.0.0
+  flutter_colorpicker: ^1.0.3
 
 dev_dependencies:
   flutter_test:
