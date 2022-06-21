@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/providers/board_provider.dart';
+import 'package:monopoly_admin/web/widgets/color_picker.dart';
 import 'package:provider/provider.dart';
 
 class AddSlotDialog extends StatefulWidget {
@@ -16,6 +17,16 @@ class AddSlotDialog extends StatefulWidget {
 
 class _AddSlotDialogState extends State<AddSlotDialog> {
   String _dropdownValue = 'Land';
+  int _level = 0;
+  Color _color = Colors.teal[300]!;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _color =
+        Provider.of<BoardProvider>(context, listen: false).getRandomColor();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +82,88 @@ class _AddSlotDialogState extends State<AddSlotDialog> {
             const SizedBox(
               height: 7,
             ),
+            _dropdownValue == 'Land'
+                ? Column(
+                    children: [
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Choose Level'),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          DropdownButton<int>(
+                            value: _level,
+                            icon: const Icon(Icons.arrow_downward),
+                            elevation: 16,
+                            style: const TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            onChanged: (int? newValue) {
+                              setState(() {
+                                _level = newValue!;
+                              });
+                            },
+                            items: <int>[
+                              0,
+                              1,
+                              2,
+                              3,
+                              4,
+                              5,
+                            ].map<DropdownMenuItem<int>>((int value) {
+                              return DropdownMenuItem<int>(
+                                value: value,
+                                child: Text(
+                                    value == 0 ? '-select-' : value.toString()),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: () async {
+                            Color? color = await showDialog(
+                                context: context,
+                                builder: (context) => ColorPickerWidget(
+                                      color: _color,
+                                    ));
+                            if (color != null) {
+                              setState(() {
+                                _color = color;
+                              });
+                            }
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text('Choose Color'),
+                              const SizedBox(
+                                width: 30,
+                              ),
+                              CircleAvatar(
+                                backgroundColor: _color,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      )
+                    ],
+                  )
+                : const SizedBox(),
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -26,4 +26,3 @@ void main() {
     )
   ], child: const AdminApp()));
 }
-
