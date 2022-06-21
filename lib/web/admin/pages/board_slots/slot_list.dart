@@ -22,6 +22,7 @@ class SlotList extends StatelessWidget {
                   itemCount: boardProvider.slots.length,
                   itemBuilder: (BuildContext context, int index) {
                     return SizedBox(
+                      height: 70,
                       child: FittedBox(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,

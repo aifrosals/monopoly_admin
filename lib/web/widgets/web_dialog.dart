@@ -9,6 +9,7 @@ class WebDialog {
         builder: (context) => Dialog(
               child: SizedBox(
                 height: 100,
+                width: 500,
                 child: Column(
                   children: [
                     Align(

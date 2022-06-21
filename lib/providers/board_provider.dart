@@ -248,7 +248,7 @@ class BoardProvider extends ChangeNotifier {
   Color getRandomColor() {
     List<Color> colors = [
       const Color(0xfff1c232),
-      const Color(0xff43AA8B),
+      const Color(0xff4fa874),
       const Color(0xff45818e),
       const Color(0xff3d17a0),
       const Color(0xff219EBC),
@@ -258,7 +258,7 @@ class BoardProvider extends ChangeNotifier {
       const Color(0xff6A4C93),
       const Color(0xff4c9480),
       const Color(0xff944c8b),
-      const Color(0xff86ff57),
+      const Color(0xff43728b),
       const Color(0xffff57a0)
     ];
     int index = math.Random().nextInt(colors.length);
