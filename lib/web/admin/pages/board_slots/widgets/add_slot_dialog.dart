@@ -144,17 +144,21 @@ class _AddSlotDialogState extends State<AddSlotDialog> {
                               });
                             }
                           },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text('Choose Color'),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              CircleAvatar(
-                                backgroundColor: _color,
-                              )
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text('Choose Color'),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                CircleAvatar(
+                                  minRadius: 10,
+                                  backgroundColor: _color,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
