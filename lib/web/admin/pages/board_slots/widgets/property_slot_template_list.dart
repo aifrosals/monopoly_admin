@@ -8,7 +8,23 @@ class PropertySlotTemplateList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Table(
+          children: const [
+            TableRow(
+                children: [
+                  Center(child: Text(
+                    'Name', style: TextStyle(fontWeight: FontWeight.bold),)),
+                  Center(child: Text(
+                    'Image', style: TextStyle(fontWeight: FontWeight.bold),)),
+                  SizedBox(),
+                  SizedBox(),
+                ]
+            )
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: WebPalette.primary,
         onPressed: () {

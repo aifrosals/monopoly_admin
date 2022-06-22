@@ -1,10 +1,10 @@
 class ApiConstants {
-  // static const String domain = 'http://192.168.10.14:3000/';
-  // static const String socketPoint = 'http://192.168.10.14:3000/';
+  static const String domain = 'http://192.168.10.17:3000/';
+  static const String socketPoint = 'http://192.168.10.17:3000/';
 
-  static const String domain = 'https://desolate-sierra-90130.herokuapp.com/';
-  static const String socketPoint =
-      'https://desolate-sierra-90130.herokuapp.com/';
+  // static const String domain = 'https://desolate-sierra-90130.herokuapp.com/';
+  // static const String socketPoint =
+  //     'https://desolate-sierra-90130.herokuapp.com/';
 
   static const String registerUserWithEmail = 'registerUserWithEmail';
   static const String registerGuest = 'registerGuest';
@@ -59,4 +59,5 @@ class ApiConstants {
 
   ///Manage Board
   static const String saveEditableSlots = 'saveEditableSlots';
+  static const String addTemplate = 'addTemplate';
 }
