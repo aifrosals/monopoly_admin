@@ -45,7 +45,9 @@ class _PropertySlotTemplateMainState extends State<PropertySlotTemplateMain> {
         ),
         body: const TabBarView(
           children: <Widget>[
-            PropertySlotTemplateList(),
+            PropertySlotTemplateList(
+              level: 0,
+            ),
             Center(
               child: Text("It's rainy here"),
             ),

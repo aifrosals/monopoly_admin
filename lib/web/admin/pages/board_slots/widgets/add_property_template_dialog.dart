@@ -1,15 +1,16 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:monopoly_admin/providers/admin_provider.dart';
 import 'dart:io';
-
 import 'package:monopoly_admin/providers/p_slot_template_provider.dart';
 import 'package:provider/provider.dart';
 
 class AddPropertyTemplateDialog extends StatefulWidget {
-  const AddPropertyTemplateDialog({Key? key}) : super(key: key);
+  final int level;
+
+  const AddPropertyTemplateDialog({Key? key, required this.level})
+      : super(key: key);
 
   @override
   State<AddPropertyTemplateDialog> createState() =>
@@ -19,11 +20,12 @@ class AddPropertyTemplateDialog extends StatefulWidget {
 class _AddPropertyTemplateDialogState extends State<AddPropertyTemplateDialog> {
   XFile? _image;
   Uint8List? _webImage;
+  TextEditingController _displayNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final pSlotTemplateProvider = Provider.of<PSlotTemplateProvider>(
-        context, listen: false);
+    final pSlotTemplateProvider =
+        Provider.of<PSlotTemplateProvider>(context, listen: false);
     final adminProvider = Provider.of<AdminProvider>(context, listen: false);
     return Dialog(
       child: SizedBox(
@@ -83,20 +85,19 @@ class _AddPropertyTemplateDialogState extends State<AddPropertyTemplateDialog> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Display Name'),
                       SizedBox(
                           height: 50,
                           width: 200, child: TextField(
-
-                        decoration: InputDecoration(
-                          labelText: "Land",
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Colors.grey, width: 2.0),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ))
+                        controller: _displayNameController,
+                            decoration: InputDecoration(
+                              labelText: "Display Name",
+                              border: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Colors.grey, width: 2.0),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ))
                     ],
                   ),
                 ],
@@ -122,9 +123,12 @@ class _AddPropertyTemplateDialogState extends State<AddPropertyTemplateDialog> {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(primary: Colors.blue),
                       onPressed: () async {
-                        if (_image != null) {
+                        if (_webImage != null) {
                           pSlotTemplateProvider.addTemplate(
-                              File(_image!.path), adminProvider.admin!);
+                              _webImage!,
+                              adminProvider.admin!,
+                              widget.level,
+                              _displayNameController.text);
                         }
                         Navigator.pop(context);
                       },
