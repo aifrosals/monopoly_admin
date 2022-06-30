@@ -147,11 +147,102 @@ class BoardProvider extends ChangeNotifier {
     }
   }
 
+  addPropertySlot(int index, String type, Color color, int level) {
+    if (index != 0 && index != _editableSlots.length - 1) {
+      _editableSlots.insert(
+          index, getPropertySlotWithLevel(type, index, color, level));
+      rearrangeList();
+    }
+  }
+
   rearrangeList() {
     for (int i = 0; i < _editableSlots.length; i++) {
       _editableSlots[i].index = i;
     }
     notifyListeners();
+  }
+
+  getPropertySlotWithLevel(String type, int index, Color color, int level) {
+    switch (level) {
+      case 0:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'For Sell',
+              type: 'land',
+              index: index,
+              price: 50,
+              level: 0);
+        }
+      case 1:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'House',
+              type: 'house',
+              index: index,
+              price: 100,
+              level: 1);
+        }
+      case 2:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'Shop',
+              type: 'shop',
+              index: index,
+              price: 200,
+              level: 2);
+        }
+      case 3:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'Condo',
+              type: 'condo',
+              index: index,
+              price: 400,
+              level: 3);
+        }
+      case 4:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'Business Center',
+              type: 'business_center',
+              index: index,
+              price: 50,
+              level: 4);
+        }
+      case 5:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'City',
+              type: 'city',
+              index: index,
+              price: 50,
+              level: 5);
+        }
+
+      default:
+        {
+          return Slot(
+              initialType: 'land',
+              color: color,
+              name: 'For Sell',
+              type: 'land',
+              index: index,
+              price: 50,
+              level: 0);
+        }
+    }
   }
 
   getSlotByType(String type, int index) {

@@ -5,6 +5,13 @@ class MessageDialogUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(children: [
+      Text('Error saving template'),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Close'))
+    ]);
   }
 }

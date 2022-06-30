@@ -188,7 +188,12 @@ class _AddSlotDialogState extends State<AddSlotDialog> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.blue),
                     onPressed: () {
-                      boardProvider.addSlot(widget.index, _dropdownValue);
+                      if (_dropdownValue == 'Land') {
+                        boardProvider.addPropertySlot(
+                            widget.index, _dropdownValue, _color, _level);
+                      } else {
+                        boardProvider.addSlot(widget.index, _dropdownValue);
+                      }
                       Navigator.pop(context);
                     },
                     child: const Text(
