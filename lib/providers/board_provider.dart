@@ -147,6 +147,11 @@ class BoardProvider extends ChangeNotifier {
     }
   }
 
+  editSlotColor(int index, Color color) {
+    _editableSlots[index].color = color;
+    notifyListeners();
+  }
+
   addPropertySlot(int index, String type, Color color, int level) {
     if (index != 0 && index != _editableSlots.length - 1) {
       _editableSlots.insert(

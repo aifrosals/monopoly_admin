@@ -32,19 +32,25 @@ class SideBarBoardSlotExpansionTile extends StatelessWidget {
               color: dashboardProvider.mainWidgetIndex == 5
                   ? WebPalette.primary
                   : Colors.white,
-              child: SideBarListTile(
-                  title: 'Mange Board Slots',
-                  index: 5,
-                  icon: CupertinoIcons.list_bullet_below_rectangle),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: SideBarListTile(
+                    title: 'Mange Board Slots',
+                    index: 5,
+                    icon: CupertinoIcons.list_bullet_below_rectangle),
+              ),
             ),
             Container(
               color: dashboardProvider.mainWidgetIndex == 6
                   ? WebPalette.primary
                   : Colors.white,
-              child: SideBarListTile(
-                  title: 'Manage Property Slots',
-                  index: 6,
-                  icon: CupertinoIcons.photo_fill_on_rectangle_fill),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: SideBarListTile(
+                    title: 'Manage Property Slots',
+                    index: 6,
+                    icon: CupertinoIcons.photo_fill_on_rectangle_fill),
+              ),
             ),
           ],
         ),
