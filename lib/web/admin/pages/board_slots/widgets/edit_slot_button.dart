@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/providers/board_provider.dart';
+import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/edit_slot_dialog.dart';
 import 'package:monopoly_admin/web/widgets/color_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -14,11 +15,11 @@ class EditSlotButton extends StatelessWidget {
 
     return ElevatedButton(
       onPressed: () async {
-        Color color = Colors.teal;
-        color = await showDialog(
-            context: context,
-            builder: (context) => ColorPickerWidget(color: color));
-        boardProvider.editSlotColor(index, color);
+        showDialog(
+          context: context,
+          builder: (context) => EditSlotDialog(
+              index: index, slot: boardProvider.editableSlots[index]),
+        );
       },
       child: const Icon(Icons.create_rounded, color: Colors.white),
       style: ButtonStyle(
@@ -27,8 +28,9 @@ class EditSlotButton extends StatelessWidget {
         backgroundColor: MaterialStateProperty.all(Colors.amber),
         // <-- Button color
         overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-          if (states.contains(MaterialState.pressed))
-            return Colors.grey; // <-- Splash color
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.grey;
+          } // <-- Splash color
         }),
       ),
     );

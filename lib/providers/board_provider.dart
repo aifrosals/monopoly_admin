@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:monopoly_admin/api/api_constants.dart';
 import 'package:monopoly_admin/models/admin.dart';
@@ -147,9 +149,14 @@ class BoardProvider extends ChangeNotifier {
     }
   }
 
-  editSlotColor(int index, Color color) {
+  editSlotColor(int index, Color color,) {
     _editableSlots[index].color = color;
     notifyListeners();
+  }
+
+  editSlotColorWithImage(int index, Color color, String? imageLink) {
+    _editableSlots[index].color = color;
+    _editableSlots[index].image = imageLink;
   }
 
   addPropertySlot(int index, String type, Color color, int level) {
@@ -165,6 +172,18 @@ class BoardProvider extends ChangeNotifier {
       _editableSlots[i].index = i;
     }
     notifyListeners();
+  }
+
+  Future<String?> uploadSlotImage(Uint8List bytes, int index) async {
+    try {
+      final storageRef = FirebaseStorage.instance.ref().child(
+          'slotImages/${_editableSlots[index].index}/image');
+      await storageRef.putData(bytes);
+      String link = await storageRef.getDownloadURL();
+      return link;
+    } catch (e, st) {
+      return null;
+    }
   }
 
   getPropertySlotWithLevel(String type, int index, Color color, int level) {

@@ -42,7 +42,12 @@ class CityView extends StatelessWidget {
                           width: 180,
                           child: Stack(
                             children: [
-                              Image.asset('assets/images/city.png'),
+                              slot.image != null
+                                  ? Image.network(
+                                      slot.image!,
+                                      height: 100,
+                                    )
+                                  : Image.asset('assets/images/city.png'),
                               slot.status == 'for_sell'
                                   ? Positioned.fill(
                                       child: Padding(

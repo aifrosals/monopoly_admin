@@ -29,7 +29,12 @@ class HouseView extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.asset('assets/images/house.png'),
+                      slot.image != null
+                          ? Image.network(
+                              slot.image!,
+                              height: 100,
+                            )
+                          : Image.asset('assets/images/house.png'),
                       slot.status == 'for_sell'
                           ? Positioned.fill(
                               child: Padding(

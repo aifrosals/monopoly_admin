@@ -40,7 +40,14 @@ class LandView extends StatelessWidget {
                     children: [
                       Stack(
                         children: [
-                          Image.asset('assets/images/land.png'),
+                          slot.image != null
+                              ? Image.network(
+                                  slot.image!,
+                                  height: 100,
+                                )
+                              : Image.asset(
+                                  'assets/images/land.png',
+                                ),
                           slot.status == 'for_sell'
                               ? Positioned.fill(
                                   child: Padding(
