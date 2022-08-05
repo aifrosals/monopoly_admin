@@ -67,6 +67,9 @@ class BoardProvider extends ChangeNotifier {
       await Future.delayed(Duration.zero);
       _slotsLoading = true;
       notifyListeners();
+      for (int i = 0; i < _editableSlots.length; i++) {
+        _editableSlots[i].index = i;
+      }
       String slots = json.encode(_editableSlots);
       Uri url =
           Uri.parse('${ApiConstants.domain}${ApiConstants.saveEditableSlots}');
