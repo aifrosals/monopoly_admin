@@ -106,25 +106,28 @@ class _BoardSlotState extends State<BoardSlot> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Consumer<BoardProvider>(
-                              builder: (context, boardProvider, child) {
-                            return Text(
-                                'Total Slots: ${boardProvider.slots.length}',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 30));
-                          }),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          EditAllSlotsButton(),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          AddSlotColorsButton(),
-                        ],
+                      child: FittedBox(
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Consumer<BoardProvider>(
+                                builder: (context, boardProvider, child) {
+                              return Text(
+                                  'Total Slots: ${boardProvider.slots.length}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30));
+                            }),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            EditAllSlotsButton(),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            AddSlotColorsButton(),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(

@@ -36,12 +36,12 @@ class WebDialog {
 
   static showLoadingDialog() {
     showDialog(
-        context: Values.navigatorKey.currentContext!,
-        builder: (context) =>
-            Dialog(child: const Center(child: CircularProgressIndicator())));
+        context: Values.adminNavigatorKey.currentContext!,
+        builder: (context) => Center(child: CircularProgressIndicator()));
   }
 
   static pop() {
-    Navigator.pop(Values.navigatorKey.currentContext!);
+    Navigator.pop(Values.adminNavigatorKey.currentContext!);
   }
 }
+

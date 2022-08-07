@@ -45,17 +45,12 @@ class BoardProvider extends ChangeNotifier {
           response.statusCode == 402 ||
           response.statusCode == 403 ||
           response.statusCode == 405) {} else {
-        showDialog(
-            context: Values.navigatorKey.currentContext!,
-            builder: (context) => WebDialog.showServerResponseDialog(
-                'Error ${response.statusCode}'));
+        WebDialog.showServerResponseDialog('Error ${response.statusCode}');
       }
     } catch (error, st) {
       debugPrint('BoardProvider $error $st');
-      showDialog(
-          context: Values.navigatorKey.currentContext!,
-          builder: (context) =>
-              WebDialog.showServerResponseDialog('Unknown error'));
+
+      WebDialog.showServerResponseDialog('Unknown error');
     } finally {
       _slotsLoading = false;
       notifyListeners();
@@ -93,22 +88,14 @@ class BoardProvider extends ChangeNotifier {
           response.statusCode == 402 ||
           response.statusCode == 403 ||
           response.statusCode == 405) {
-        showDialog(
-            context: Values.navigatorKey.currentContext!,
-            builder: (context) =>
-                WebDialog.showServerResponseDialog(response.body));
+        WebDialog.showServerResponseDialog(response.body);
       } else {
-        showDialog(
-            context: Values.navigatorKey.currentContext!,
-            builder: (context) => WebDialog.showServerResponseDialog(
-                'Error ${response.statusCode}'));
+        WebDialog.showServerResponseDialog('Error ${response.statusCode}');
       }
     } catch (error, st) {
       debugPrint('BoardProvider saveEditableSlots $error $st');
-      showDialog(
-          context: Values.navigatorKey.currentContext!,
-          builder: (context) =>
-              WebDialog.showServerResponseDialog('Unknown error'));
+
+      WebDialog.showServerResponseDialog('Unknown error');
     } finally {
       _slotsLoading = false;
       notifyListeners();
@@ -117,9 +104,8 @@ class BoardProvider extends ChangeNotifier {
 
   updateSlotColors(Admin admin, List<String?> colors) async {
     try {
-      //    WebDialog.showLoadingDialog();
-      var jsonColors = json.encode(colors);
-      debugPrint(' json colors $jsonColors');
+      WebDialog.showLoadingDialog();
+
       Uri url =
           Uri.parse('${ApiConstants.domain}${ApiConstants.updateSlotColors}');
       var body = json.encode({'colors': colors});
@@ -132,29 +118,28 @@ class BoardProvider extends ChangeNotifier {
           'x-access-token': admin.token
         },
       );
-      //  WebDialog.pop();
+
       debugPrint('BoardProvider updateSlotColors ${response.body}');
       if (response.statusCode == 200) {
+        await getBoardSlots(admin);
+        WebDialog.pop();
         WebDialog.showServerResponseDialog(response.body);
       } else if (response.statusCode == 400 ||
           response.statusCode == 401 ||
           response.statusCode == 402 ||
           response.statusCode == 403 ||
           response.statusCode == 405) {
-        showDialog(
-            context: Values.navigatorKey.currentContext!,
-            builder: (context) =>
-                WebDialog.showServerResponseDialog(response.body));
+        WebDialog.pop();
+        WebDialog.showServerResponseDialog(response.body);
       } else {
+        WebDialog.pop();
         WebDialog.showServerResponseDialog('Error ${response.statusCode}');
       }
     } catch (error, st) {
       debugPrint('BoardProvider updateSlotColors $error $st');
-
+      WebDialog.pop();
       WebDialog.showServerResponseDialog('Unknown error');
-    } finally {
-      getBoardSlots(admin);
-    }
+    } finally {}
   }
 
   setSlotsForEdit() {

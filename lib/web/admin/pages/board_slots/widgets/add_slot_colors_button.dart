@@ -108,8 +108,9 @@ class _AddSlotColorsDialogState extends State<AddSlotColorsDialog> {
                               children: const [
                                 TextSpan(
                                   text:
-                                      'Color(s) found. Do you want to update the colors fo the slots?',
-                                ),
+                                        ' Color(s) found. Do you want to update the colors fo the slots?',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal)),
                               ]),
                         ),
                         Row(
@@ -127,9 +128,9 @@ class _AddSlotColorsDialogState extends State<AddSlotColorsDialog> {
                             ),
                             ElevatedButton(
                                 onPressed: () {
+                                  Navigator.pop(context);
                                   boardProvider.updateSlotColors(
                                       adminProvider.admin!, _colors);
-                                  Navigator.pop(context);
                                 },
                                 child: const Text('Update')),
                           ],
