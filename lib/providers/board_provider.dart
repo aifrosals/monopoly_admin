@@ -115,6 +115,48 @@ class BoardProvider extends ChangeNotifier {
     }
   }
 
+  updateSlotColors(Admin admin, List<String?> colors) async {
+    try {
+      //    WebDialog.showLoadingDialog();
+      var jsonColors = json.encode(colors);
+      debugPrint(' json colors $jsonColors');
+      Uri url =
+          Uri.parse('${ApiConstants.domain}${ApiConstants.updateSlotColors}');
+      var body = json.encode({'colors': colors});
+      debugPrint('$url');
+      var response = await http.post(
+        url,
+        body: body,
+        headers: {
+          'Content-Type': 'application/json',
+          'x-access-token': admin.token
+        },
+      );
+      //  WebDialog.pop();
+      debugPrint('BoardProvider updateSlotColors ${response.body}');
+      if (response.statusCode == 200) {
+        WebDialog.showServerResponseDialog(response.body);
+      } else if (response.statusCode == 400 ||
+          response.statusCode == 401 ||
+          response.statusCode == 402 ||
+          response.statusCode == 403 ||
+          response.statusCode == 405) {
+        showDialog(
+            context: Values.navigatorKey.currentContext!,
+            builder: (context) =>
+                WebDialog.showServerResponseDialog(response.body));
+      } else {
+        WebDialog.showServerResponseDialog('Error ${response.statusCode}');
+      }
+    } catch (error, st) {
+      debugPrint('BoardProvider updateSlotColors $error $st');
+
+      WebDialog.showServerResponseDialog('Unknown error');
+    } finally {
+      getBoardSlots(admin);
+    }
+  }
+
   setSlotsForEdit() {
     _editSlots = true;
     _editableSlots = List.from(_slots);

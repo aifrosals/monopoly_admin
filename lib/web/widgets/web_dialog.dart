@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 import 'package:monopoly_admin/config/values.dart';
@@ -30,5 +32,16 @@ class WebDialog {
                 ),
               ),
             ));
+  }
+
+  static showLoadingDialog() {
+    showDialog(
+        context: Values.navigatorKey.currentContext!,
+        builder: (context) =>
+            Dialog(child: const Center(child: CircularProgressIndicator())));
+  }
+
+  static pop() {
+    Navigator.pop(Values.navigatorKey.currentContext!);
   }
 }

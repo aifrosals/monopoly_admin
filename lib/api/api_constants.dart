@@ -63,4 +63,5 @@ class ApiConstants {
   static const String getTemplateByLevel = 'getTemplateByLevel';
   static const String activateTemplateByLevel = 'activateTemplateByLevel';
   static const String deactivateTemplate = 'deactivateTemplate';
+  static const String updateSlotColors = 'updateSlotColors';
 }
