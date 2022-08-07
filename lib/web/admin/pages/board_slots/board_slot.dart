@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:monopoly_admin/config/screen_config.dart';
 import 'package:monopoly_admin/providers/admin_provider.dart';
 import 'package:monopoly_admin/providers/board_provider.dart';
+import 'package:monopoly_admin/theme/styles.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/edit_all_slots_button.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/edit_slots/edit_slot_list.dart';
 import 'package:monopoly_admin/web/admin/pages/board_slots/slot_list.dart';
+import 'package:monopoly_admin/web/admin/pages/board_slots/widgets/add_slot_colors_button.dart';
 import 'package:provider/provider.dart';
 
 class BoardSlot extends StatefulWidget {
@@ -38,7 +40,7 @@ class _BoardSlotState extends State<BoardSlot> {
         }),
         Consumer<BoardProvider>(builder: (context, boardProvider, child) {
           if (boardProvider.editSlots) {
-            return EditSlotList();
+            return const EditSlotList();
           } else {
             return LayoutBuilder(builder: (context, constraints) {
               if (constraints.maxWidth > 1200) {
@@ -58,10 +60,13 @@ class _BoardSlotState extends State<BoardSlot> {
                         const SizedBox(
                           height: 20,
                         ),
-                        EditAllSlotsButton()
+                        const EditAllSlotsButton(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AddSlotColorsButton(),
                       ],
                     ),
-                    SlotList()
                   ],
                 );
               } else if (constraints.maxWidth <= 1200 &&
@@ -82,7 +87,11 @@ class _BoardSlotState extends State<BoardSlot> {
                           const SizedBox(
                             height: 20,
                           ),
-                          EditAllSlotsButton()
+                          EditAllSlotsButton(),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          AddSlotColorsButton(),
                         ],
                       ),
                     ),
@@ -110,7 +119,11 @@ class _BoardSlotState extends State<BoardSlot> {
                           const SizedBox(
                             width: 20,
                           ),
-                          EditAllSlotsButton()
+                          EditAllSlotsButton(),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          AddSlotColorsButton(),
                         ],
                       ),
                     ),

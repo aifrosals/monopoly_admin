@@ -30,7 +30,8 @@ class AdminProvider extends ChangeNotifier {
         uri,
         body: json.encode(body),
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*"
           // HttpHeaders.authorizationHeader: 'Bearer ${user.token}'
           //'${user.token}',
         },

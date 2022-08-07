@@ -11,7 +11,6 @@ class EditAllSlotsButton extends StatelessWidget {
     return SizedBox(
       height: 40,
       child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: Colors.blue),
           onPressed: () => boardProvider.setSlotsForEdit(),
           child: const Text(
             'Edit Slots',

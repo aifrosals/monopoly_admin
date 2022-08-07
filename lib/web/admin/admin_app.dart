@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:monopoly_admin/config/values.dart';
 import 'package:monopoly_admin/providers/admin_provider.dart';
+import 'package:monopoly_admin/theme/styles.dart';
 import 'package:monopoly_admin/web/admin/pages/dashboard_large_screen.dart';
 import 'package:monopoly_admin/web/admin/pages/admin_login.dart';
 import 'package:monopoly_admin/web/admin/pages/challenge/question_menu.dart';
@@ -18,6 +19,10 @@ class AdminApp extends StatelessWidget {
     return MaterialApp(
         title: 'Monopoly Admin Portal',
         theme: ThemeData(
+          outlinedButtonTheme:
+              OutlinedButtonThemeData(style: Styles.outlineButtonStyle),
+          elevatedButtonTheme:
+              ElevatedButtonThemeData(style: Styles.elevatedButtonStyle),
           textTheme:
               GoogleFonts.sourceSans3TextTheme(Theme.of(context).textTheme),
           appBarTheme: AppBarTheme(
