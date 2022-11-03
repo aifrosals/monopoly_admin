@@ -125,12 +125,17 @@ class Slot {
     return {
       'initial_type': initialType,
       'current_type': type,
-      'color': '#${color.value.toRadixString(16)}',
-      'name': name,
-      'price': price,
       'level': level,
       'image': image,
+      'name': name,
+      'color': '#${color.value.toRadixString(16)}',
       'index': index,
+      'land_price': price,
+      'updated_price': updatedPrice,
+      'all_step_count': allStepCount,
+      'status': status,
+      'owner': owner
+
     };
   }
 }

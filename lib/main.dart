@@ -36,5 +36,6 @@ void main() async {
     ChangeNotifierProvider<PSlotTemplateProvider>(
       create: (context) => PSlotTemplateProvider(),
     ),
+
   ], child: const AdminApp()));
 }

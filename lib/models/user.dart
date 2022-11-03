@@ -115,6 +115,7 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
+      '_id': serverId,
       'id': id,
       'credits': credits,
       'loops': loops,
@@ -125,6 +126,7 @@ class User {
       'challenge_progress': challengeProgress,
       'bonus': bonus.toJson(),
       'premium': premium,
+      'items': items.toJson(),
     };
   }
 

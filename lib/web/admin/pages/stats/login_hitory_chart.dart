@@ -31,7 +31,7 @@ class LoginHistoryChart extends StatelessWidget {
   final bool animate;
 
   const LoginHistoryChart(
-      {required this.animate, Key? key, required this.seriesList});
+      {Key? key, required this.animate, required this.seriesList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,13 @@ class LoginHistoryChart extends StatelessWidget {
           animate: animate,
           // Set the default renderer to a bar renderer.
           // This can also be one of the custom renderers of the time series chart.
-          defaultRenderer: charts.BarRendererConfig<DateTime>(),
+          defaultRenderer: charts.BarRendererConfig<DateTime>(
+            maxBarWidthPx: 40
+          ),
           // It is recommended that default interactions be turned off if using bar
           // renderer, because the line point highlighter is the default for time
           // series chart.
+
           defaultInteractions: false,
           // If default interactions were removed, optionally add select nearest
           // and the domain highlighter that are typical for bar charts.

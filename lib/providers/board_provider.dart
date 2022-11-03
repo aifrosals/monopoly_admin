@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:monopoly_admin/api/api_constants.dart';
 import 'package:monopoly_admin/models/admin.dart';
 import 'package:monopoly_admin/models/slot.dart';
-import 'package:monopoly_admin/config/values.dart';
 import 'package:http/http.dart' as http;
 import 'package:monopoly_admin/web/widgets/web_dialog.dart';
 import 'dart:math' as math;
@@ -78,7 +77,7 @@ class BoardProvider extends ChangeNotifier {
           'x-access-token': admin.token
         },
       );
-      debugPrint('BoardProvider saveEditableSlots ${response.body}');
+      debugPrint('BoardProvider saveEditableSlots ${response.body} ${response.statusCode}');
       if (response.statusCode == 200) {
         WebDialog.showServerResponseDialog(response.body);
         cancelEdit();
