@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 
 class AdminApp extends StatelessWidget {
   const AdminApp({Key? key}) : super(key: key);
-// admin
+// admi
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
